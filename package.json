@@ -1,0 +1,35 @@
+{
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/parser": "^6.20.0",
+    "bullmq": "^5.1.8",
+    "dotenv": "^16.4.1",
+    "eslint": "^8.56.0",
+    "ethers": "^6.10.0",
+    "pino": "^8.18.0",
+    "prettier": "^3.2.5",
+    "redis": "^4.6.12",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "pino-pretty": "^10.3.1"
+  },
+  "scripts": {
+    "lint": "DEBUG=eslint:cli-engine npx eslint 'src/**/*.ts' 'src/*.ts'",
+    "clean": "rm -rf dist",
+    "build": "yarn clean && tsc",
+    "start:listener": "node --no-warnings --experimental-specifier-resolution=node --experimental-json-modules dist/listener/main",
+    "start:listener:shard": "yarn start:listener --service SHARD",
+    "start:worker": "node --no-warnings --experimental-specifier-resolution=node --experimental-json-modules dist/worker/main.js",
+    "start:worker:shard": "yarn start:worker --worker SHARD",
+    "start:reporter": "node --no-warnings --experimental-specifier-resolution=node --experimental-json-modules dist/reporter/main.js",
+    "start:reporter:shard": "yarn start:reporter --reporter SHARD"
+  }
+}
